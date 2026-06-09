@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lega Portonaccio – Albo d'Oro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue:#1B3A6B; --blue-mid:#234D8F; --blue-light:#2E6AB0;
+      --orange:#E8650A; --orange-light:#F5821F;
+      --gold:#D4A017; --gold-light:#F0C040;
+      --bg:#0D1B2A; --bg-card:#122035; --bg-card2:#17293F;
+      --text:#EEF0F5; --text-muted:#8A9BB5; --border:rgba(255,255,255,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Barlow',sans-serif; background:var(--bg); color:var(--text); }
+
+    /* NAV */
+    nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(13,27,42,0.96); backdrop-filter:blur(12px);
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; padding:0 2rem; height:62px;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; margin-right:auto; }
+    .nav-logo img { height:42px; width:auto; }
+    .nav-logo span { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:2px; color:var(--text); }
+    .nav-links { display:flex; list-style:none; height:100%; }
+    .nav-links a {
+      display:flex; align-items:center; padding:0 1rem; height:62px;
+      text-decoration:none; color:var(--text-muted);
+      font-family:'Barlow Condensed',sans-serif; font-size:0.82rem;
+      font-weight:600; letter-spacing:1.5px; text-transform:uppercase;
+      border-bottom:3px solid transparent; transition:all 0.2s;
+    }
+    .nav-links a:hover { color:var(--orange-light); border-bottom-color:var(--orange); }
+
+    /* HERO */
+    .hero {
+      position:relative; min-height:92vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; overflow:hidden; padding:4rem 2rem 6rem;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 60%, rgba(232,101,10,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 80% 60% at 30% 20%, rgba(27,58,107,0.5) 0%, transparent 60%),
+        linear-gradient(180deg,#0D1B2A 0%,#091524 100%);
+    }
+    .hero-grid {
+      position:absolute; inset:0;
+      background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+      background-size:60px 60px;
+      mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 0%,transparent 80%);
+    }
+    .hero-content { position:relative; z-index:2; }
+    .hero-logo {
+      width:180px; height:auto; margin-bottom:2rem;
+      filter:drop-shadow(0 0 40px rgba(232,101,10,0.4));
+      animation:floatLogo 4s ease-in-out infinite;
+    }
+    @keyframes floatLogo { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .hero-eyebrow { font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--orange); margin-bottom:0.8rem; }
+    .hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(3.5rem,9vw,7.5rem); line-height:0.9; letter-spacing:4px; color:var(--text); margin-bottom:0.4rem; }
+    .hero-title span { color:var(--orange); }
+    .hero-subtitle { font-family:'Bebas Neue',sans-serif; font-size:clamp(1.2rem,3.5vw,2.2rem); letter-spacing:8px; color:var(--text-muted); margin-bottom:1.8rem; }
+    .hero-desc { max-width:580px; margin:0 auto 2.5rem; font-size:1rem; line-height:1.7; color:var(--text-muted); }
+    .hero-stats { display:flex; gap:2.5rem; justify-content:center; flex-wrap:wrap; }
+    .hero-stat { text-align:center; }
+    .hero-stat-num { font-family:'Bebas Neue',sans-serif; font-size:3rem; color:var(--orange); line-height:1; }
+    .hero-stat-label { font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); margin-top:3px; }
+    .hero-divider { width:1px; height:48px; background:var(--border); align-self:center; }
+
+    /* SECTIONS */
+    section { padding:5rem 2rem; }
+    .section-inner { max-width:1200px; margin:0 auto; }
+    .section-header { display:flex; align-items:baseline; gap:1rem; margin-bottom:2.5rem; border-bottom:1px solid var(--border); padding-bottom:1.2rem; }
+    .section-tag { font-family:'Barlow Condensed',sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--orange); background:rgba(232,101,10,0.12); padding:3px 10px; border-radius:3px; }
+    .section-title { font-family:'Bebas Neue',sans-serif; font-size:2.4rem; letter-spacing:3px; color:var(--text); }
+
+    /* COACHES */
+    .coaches-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:1.2rem; }
+    .coach-card {
+      background:var(--bg-card); border:1px solid var(--border); border-radius:12px;
+      padding:1.4rem; position:relative; overflow:hidden;
+      transition:transform 0.2s,border-color 0.2s;
+    }
+    .coach-card:hover { transform:translateY(-4px); border-color:rgba(232,101,10,0.3); }
+    .coach-card::before { content:''; position:absolute; top:0;left:0;right:0; height:3px; background:linear-gradient(90deg,var(--orange),var(--gold)); }
+    .coach-rank { position:absolute; top:0.8rem; right:1rem; font-family:'Bebas Neue',sans-serif; font-size:2.8rem; color:rgba(255,255,255,0.04); line-height:1; }
+    .coach-header { display:flex; align-items:center; gap:12px; margin-bottom:1rem; }
+    .coach-avatar {
+      width:50px; height:50px; border-radius:50%; flex-shrink:0;
+      display:flex; align-items:center; justify-content:center;
+      font-family:'Bebas Neue',sans-serif; font-size:1.3rem; color:white;
+      border:2px solid rgba(255,255,255,0.1);
+    }
+    .coach-info { flex:1; min-width:0; }
+    .coach-name { font-family:'Barlow Condensed',sans-serif; font-size:1.15rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--text); }
+    .coach-realname { font-size:0.78rem; color:var(--text-muted); margin-top:1px; }
+    .coach-trophies { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:1rem; }
+    .trophy-badge { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:0.5px; padding:3px 8px; border-radius:4px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:var(--text-muted); white-space:nowrap; }
+    .trophy-badge.gold { background:rgba(212,160,23,0.15); border-color:rgba(212,160,23,0.3); color:var(--gold-light); }
+    .coach-total { display:flex; align-items:baseline; gap:6px; padding-top:0.8rem; border-top:1px solid var(--border); }
+    .coach-total-num { font-family:'Bebas Neue',sans-serif; font-size:1.9rem; color:var(--orange); line-height:1; }
+    .coach-total-label { font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); }
+
+    /* TROPHY SECTIONS */
+    .trophy-section { background:var(--bg-card); border:1px solid var(--border); border-radius:14px; overflow:hidden; margin-bottom:1.2rem; }
+    .trophy-header { display:flex; align-items:center; gap:1.2rem; padding:1.3rem 1.8rem; cursor:pointer; border-bottom:1px solid transparent; transition:background 0.2s; }
+    .trophy-header:hover { background:rgba(255,255,255,0.02); }
+    .trophy-header.open { border-bottom-color:var(--border); }
+    .trophy-icon { width:52px; height:52px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.7rem; flex-shrink:0; }
+    .trophy-icon.camp { background:rgba(212,160,23,0.15); }
+    .trophy-icon.cup  { background:rgba(232,101,10,0.15); }
+    .trophy-icon.ucl  { background:rgba(46,106,176,0.2); }
+    .trophy-icon.coppa{ background:rgba(46,176,120,0.15); }
+    .trophy-icon.sl   { background:rgba(46,106,176,0.2); }
+    .trophy-icon.talent{ background:rgba(155,89,182,0.15); }
+    .trophy-icon.coach2{ background:rgba(212,160,23,0.15); }
+    .trophy-icon.wooden{ background:rgba(139,90,43,0.2); }
+    .trophy-info { flex:1; }
+    .trophy-name { font-family:'Bebas Neue',sans-serif; font-size:1.5rem; letter-spacing:2px; color:var(--text); }
+    .trophy-count { font-family:'Barlow Condensed',sans-serif; font-size:0.72rem; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-muted); }
+    .trophy-chevron { color:var(--text-muted); font-size:1rem; transition:transform 0.3s; }
+    .trophy-chevron.open { transform:rotate(180deg); }
+    .trophy-body { display:none; }
+    .trophy-body.open { display:block; }
+    .winners-table { width:100%; border-collapse:collapse; }
+    .winners-table th { font-family:'Barlow Condensed',sans-serif; font-size:0.68rem; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--text-muted); padding:0.7rem 1.8rem; text-align:left; background:rgba(255,255,255,0.02); border-bottom:1px solid var(--border); }
+    .winners-table td { padding:0.85rem 1.8rem; border-bottom:1px solid rgba(255,255,255,0.04); font-size:0.93rem; }
+    .winners-table tr:last-child td { border-bottom:none; }
+    .winners-table tr:hover td { background:rgba(255,255,255,0.02); }
+    .season-badge { font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; font-weight:700; letter-spacing:1px; color:var(--text-muted); }
+    .winner-name { font-family:'Barlow Condensed',sans-serif; font-size:1.05rem; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; }
+    .mode-badge { font-family:'Barlow Condensed',sans-serif; font-size:0.65rem; font-weight:600; letter-spacing:1px; text-transform:uppercase; padding:2px 7px; border-radius:3px; background:rgba(255,255,255,0.06); color:var(--text-muted); border:1px solid rgba(255,255,255,0.08); }
+    .mode-badge.mantra { background:rgba(232,101,10,0.12); border-color:rgba(232,101,10,0.25); color:var(--orange-light); }
+
+    /* CLASSIFICHE */
+    .season-filter { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:2rem; }
+    .season-btn { font-family:'Barlow Condensed',sans-serif; font-size:0.78rem; font-weight:600; letter-spacing:1px; padding:6px 14px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--text-muted); cursor:pointer; transition:all 0.15s; }
+    .season-btn:hover,.season-btn.active { background:var(--orange); border-color:var(--orange); color:white; }
+    .rankings-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:1.2rem; }
+    .ranking-card { background:var(--bg-card); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .ranking-card-header { padding:0.9rem 1.4rem; background:var(--bg-card2); border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .ranking-season { font-family:'Bebas Neue',sans-serif; font-size:1.3rem; letter-spacing:2px; color:var(--orange); }
+    .ranking-table { width:100%; border-collapse:collapse; }
+    .ranking-table td { padding:0.55rem 1.4rem; font-size:0.88rem; border-bottom:1px solid rgba(255,255,255,0.04); }
+    .ranking-table tr:last-child td { border-bottom:none; }
+    .ranking-table tr:hover td { background:rgba(255,255,255,0.02); }
+    .pos-cell { font-family:'Bebas Neue',sans-serif; font-size:1rem; color:var(--text-muted); width:26px; }
+    .pos-cell.gold { color:var(--gold); }
+    .pos-cell.silver { color:#AAAAAA; }
+    .pos-cell.bronze { color:#CD7F32; }
+    .team-logo-cell { width:32px; padding-right:6px !important; }
+    .team-logo-cell img { width:26px; height:26px; object-fit:contain; }
+    .team-cell { font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:0.5px; }
+    .pts-cell { font-family:'Barlow Condensed',sans-serif; font-weight:700; color:var(--text-muted); font-size:0.85rem; text-align:right; }
+
+    footer { border-top:1px solid var(--border); padding:2.5rem 2rem; text-align:center; }
+    .footer-logo { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:4px; color:var(--text-muted); margin-bottom:0.4rem; }
+    .footer-text { font-size:0.8rem; color:var(--text-muted); opacity:0.5; }
+
+    @media(max-width:768px) {
+      nav { padding:0 1rem; }
+      .nav-links { display:none; }
+      section { padding:3rem 1rem; }
+      .hero-stats { gap:1.5rem; }
+      .hero-divider { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="navTo('home');return false;">
+    <img src="assets/logo.png" alt="Lega Portonaccio">
+    <span>Lega Portonaccio</span>
+  </a>
+  <div class="nav-links">
+    <a href="#" onclick="navTo('albodoro');return false;">Albo d'Oro</a>
+    <a href="#" onclick="navTo('campionato');return false;">Campionato</a>
+    <a href="#" onclick="navTo('coppe');return false;">Coppe</a>
+    <a href="#" onclick="navTo('premi');return false;">Premi</a>
+    <a href="#" onclick="navTo('classifiche');return false;">Classifiche</a>
+  </div>
+</nav>
+
+<section id="home" style="padding:0;">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <img src="assets/logo.png" alt="Lega Portonaccio" class="hero-logo">
+      <div class="hero-eyebrow">Dal 2004 · Roma · 21ª Stagione</div>
+      <h1 class="hero-title">Lega <span>Portonaccio</span></h1>
+      <div class="hero-subtitle">Fantacalcio · Albo d'Oro</div>
+      <p class="hero-desc">21 stagioni di battaglia, gloria e cucchiai di legno. La lega di fantacalcio più storica del quartiere, fondata nel 2004, con oltre 80 trofei assegnati e leggende da raccontare.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">21</div><div class="hero-stat-label">Stagioni</div></div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat"><div class="hero-stat-num">13</div><div class="hero-stat-label">Allenatori</div></div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat"><div class="hero-stat-num">82+</div><div class="hero-stat-label">Trofei totali</div></div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Competizioni</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ALBO D'ORO ALLENATORI -->
+<section id="albodoro">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Hall of Fame</span>
+      <h2 class="section-title">Albo d'Oro Allenatori</h2>
+    </div>
+    <div class="coaches-grid" id="coaches-grid"></div>
+  </div>
+</section>
+
+<!-- TROFEI -->
+<section id="campionato" style="padding-top:1rem;">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Competizioni</span>
+      <h2 class="section-title">Trofei & Coppe</h2>
+    </div>
+
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('camp')"><div class="trophy-icon camp">🏆</div><div class="trophy-info"><div class="trophy-name">Campionato</div><div class="trophy-count" id="cnt-camp"></div></div><div class="trophy-chevron" id="chev-camp">▼</div></div><div class="trophy-body" id="body-camp"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-camp"></tbody></table></div></div>
+
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('cup')"><div class="trophy-icon cup">🥇</div><div class="trophy-info"><div class="trophy-name">Portonaccio's Cup</div><div class="trophy-count" id="cnt-cup"></div></div><div class="trophy-chevron" id="chev-cup">▼</div></div><div class="trophy-body" id="body-cup"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-cup"></tbody></table></div></div>
+
+    <span id="coppe" style="display:block;height:1px;margin-top:-70px;padding-top:70px;visibility:hidden;"></span>
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('ucl')"><div class="trophy-icon ucl">⭐</div><div class="trophy-info"><div class="trophy-name">Champions League</div><div class="trophy-count" id="cnt-ucl"></div></div><div class="trophy-chevron" id="chev-ucl">▼</div></div><div class="trophy-body" id="body-ucl"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-ucl"></tbody></table></div></div>
+
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('coppa')"><div class="trophy-icon coppa">🇮🇹</div><div class="trophy-info"><div class="trophy-name">Coppa Italia</div><div class="trophy-count" id="cnt-coppa"></div></div><div class="trophy-chevron" id="chev-coppa">▼</div></div><div class="trophy-body" id="body-coppa"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-coppa"></tbody></table></div></div>
+
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('sl')"><div class="trophy-icon sl">💎</div><div class="trophy-info"><div class="trophy-name">Super League</div><div class="trophy-count" id="cnt-sl"></div></div><div class="trophy-chevron" id="chev-sl">▼</div></div><div class="trophy-body" id="body-sl"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-sl"></tbody></table></div></div>
+
+    <span id="premi" style="display:block;height:1px;margin-top:-70px;padding-top:70px;visibility:hidden;"></span>
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('talent')"><div class="trophy-icon talent">🔍</div><div class="trophy-info"><div class="trophy-name">Talent Scout</div><div class="trophy-count" id="cnt-talent"></div></div><div class="trophy-chevron" id="chev-talent">▼</div></div><div class="trophy-body" id="body-talent"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-talent"></tbody></table></div></div>
+
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('coach2')"><div class="trophy-icon coach2">🎖️</div><div class="trophy-info"><div class="trophy-name">Miglior Allenatore</div><div class="trophy-count" id="cnt-coach2"></div></div><div class="trophy-chevron" id="chev-coach2">▼</div></div><div class="trophy-body" id="body-coach2"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-coach2"></tbody></table></div></div>
+
+    <div class="trophy-section"><div class="trophy-header" onclick="toggleTrophy('wooden')"><div class="trophy-icon wooden">🥄</div><div class="trophy-info"><div class="trophy-name">Cucchiaio di Legno</div><div class="trophy-count" id="cnt-wooden"></div></div><div class="trophy-chevron" id="chev-wooden">▼</div></div><div class="trophy-body" id="body-wooden"><table class="winners-table"><thead><tr><th>Stagione</th><th>Vincitore</th><th>Modalità</th></tr></thead><tbody id="rows-wooden"></tbody></table></div></div>
+
+  </div>
+</section>
+
+<!-- CLASSIFICHE -->
+<section id="classifiche">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">Archivio</span>
+      <h2 class="section-title">Classifiche Stagionali</h2>
+    </div>
+    <div class="season-filter" id="season-filter"></div>
+    <div class="rankings-grid" id="rankings-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div style="max-width:1200px;margin:0 auto;">
+    <div class="footer-logo">Lega Portonaccio</div>
+    <div class="footer-text">Dal 2004 con passione · 21 stagioni · Roma</div>
+  </div>
+</footer>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+const alboDoro = [
+  {t:'Mantra',s:'2025/26',a:'alex10dp',tr:'Miglior Allenatore'},
+  {t:'Mantra',s:'2025/26',a:'joemorgan',tr:'Talent Scout'},
+  {t:'Mantra',s:'2025/26',a:'alex10dp',tr:'Champions League'},
+  {t:'Mantra',s:'2025/26',a:'susi',tr:'Campionato'},
+  {t:'Mantra',s:'2025/26',a:'susi',tr:"Portonaccio's Cup"},
+  {t:'Mantra',s:'2025/26',a:'bardok',tr:'Cucchiaio di Legno'},
+  {t:'Mantra',s:'2024/25',a:'vale16',tr:'Miglior Allenatore'},
+  {t:'Mantra',s:'2024/25',a:'bardok',tr:'Talent Scout'},
+  {t:'Mantra',s:'2024/25',a:'vale16',tr:'Champions League'},
+  {t:'Mantra',s:'2024/25',a:'vale16',tr:'Campionato'},
+  {t:'Mantra',s:'2024/25',a:'vick',tr:"Portonaccio's Cup"},
+  {t:'Mantra',s:'2024/25',a:'susi',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2023/24',a:'vick',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2023/24',a:'zeus87',tr:'Talent Scout'},
+  {t:'Classic',s:'2023/24',a:'susi',tr:'Champions League'},
+  {t:'Classic',s:'2023/24',a:'vick',tr:'Campionato'},
+  {t:'Classic',s:'2023/24',a:'joemorgan',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2023/24',a:'mastiff17',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2022/23',a:'susi',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2022/23',a:'susi',tr:'Talent Scout'},
+  {t:'Classic',s:'2022/23',a:'susi',tr:'Champions League'},
+  {t:'Classic',s:'2022/23',a:'susi',tr:'Campionato'},
+  {t:'Classic',s:'2022/23',a:'alex10dp',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2022/23',a:'joemorgan',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2021/22',a:'vick',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2021/22',a:'andrew87',tr:'Talent Scout'},
+  {t:'Classic',s:'2021/22',a:'mcgrady',tr:'Champions League'},
+  {t:'Classic',s:'2021/22',a:'jansteel87',tr:'Campionato'},
+  {t:'Classic',s:'2021/22',a:'andrew87',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2021/22',a:'andrew87',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2020/21',a:'vale16',tr:'Super League'},
+  {t:'Classic',s:'2020/21',a:'vick',tr:'Super League'},
+  {t:'Classic',s:'2020/21',a:'jansteel87',tr:'Talent Scout'},
+  {t:'Classic',s:'2020/21',a:'jansteel87',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2020/21',a:'mastiff17',tr:'Campionato'},
+  {t:'Classic',s:'2020/21',a:'bardok',tr:'Champions League'},
+  {t:'Classic',s:'2020/21',a:'vick',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2020/21',a:'vick',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2019/20',a:'zeus87',tr:'Super League'},
+  {t:'Classic',s:'2019/20',a:'joemorgan',tr:'Super League'},
+  {t:'Classic',s:'2019/20',a:'bruno8',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2019/20',a:'vale16',tr:'Talent Scout'},
+  {t:'Classic',s:'2019/20',a:'vick',tr:'Champions League'},
+  {t:'Classic',s:'2019/20',a:'vick',tr:'Campionato'},
+  {t:'Classic',s:'2019/20',a:'vale16',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2019/20',a:'joemorgan',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2018/19',a:'mcgrady',tr:'Super League'},
+  {t:'Classic',s:'2018/19',a:'zeus87',tr:'Super League'},
+  {t:'Classic',s:'2018/19',a:'alex10dp',tr:'Talent Scout'},
+  {t:'Classic',s:'2018/19',a:'zeus87',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2018/19',a:'joemorgan',tr:'Campionato'},
+  {t:'Classic',s:'2018/19',a:'mastiff17',tr:'Champions League'},
+  {t:'Classic',s:'2018/19',a:'mastiff17',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2018/19',a:'vale16',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2017/18',a:'mastiff17',tr:'Super League'},
+  {t:'Classic',s:'2017/18',a:'andrew87',tr:'Super League'},
+  {t:'Classic',s:'2017/18',a:'andrew87',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2017/18',a:'mcgrady',tr:'Talent Scout'},
+  {t:'Classic',s:'2017/18',a:'jansteel87',tr:'Champions League'},
+  {t:'Classic',s:'2017/18',a:'joemorgan',tr:'Campionato'},
+  {t:'Classic',s:'2017/18',a:'andrew87',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2017/18',a:'vick',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2016/17',a:'jansteel87',tr:'Talent Scout'},
+  {t:'Classic',s:'2016/17',a:'zeus87',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2016/17',a:'jansteel87',tr:'Campionato'},
+  {t:'Classic',s:'2016/17',a:'zeus87',tr:'Champions League'},
+  {t:'Classic',s:'2016/17',a:'zeus87',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2016/17',a:'vick',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2015/16',a:'mastiff17',tr:'Champions League'},
+  {t:'Classic',s:'2015/16',a:'mastiff17',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2015/16',a:'joemorgan',tr:'Campionato'},
+  {t:'Classic',s:'2015/16',a:'mastiff17',tr:'Miglior Allenatore'},
+  {t:'Classic',s:'2015/16',a:'zeus87',tr:'Talent Scout'},
+  {t:'Classic',s:'2015/16',a:'andrew87',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2014/15',a:'mcgrady',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2014/15',a:'vick',tr:'Champions League'},
+  {t:'Classic',s:'2014/15',a:'andrew87',tr:'Campionato'},
+  {t:'Classic',s:'2014/15',a:'jansteel87',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2013/14',a:'vick',tr:'Campionato'},
+  {t:'Classic',s:'2013/14',a:'vale16',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2013/14',a:'mcgrady',tr:'Champions League'},
+  {t:'Classic',s:'2013/14',a:'bruno8',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2012/13',a:'vale16',tr:'Champions League'},
+  {t:'Classic',s:'2012/13',a:'vick',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2012/13',a:'joemorgan',tr:'Campionato'},
+  {t:'Classic',s:'2012/13',a:'mcgrady',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2011/12',a:'vale16',tr:'Champions League'},
+  {t:'Classic',s:'2011/12',a:'bruno8',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2011/12',a:'vale16',tr:'Campionato'},
+  {t:'Classic',s:'2011/12',a:'alex10dp',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2010/11',a:'andrew87',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2010/11',a:'vick',tr:'Champions League'},
+  {t:'Classic',s:'2010/11',a:'joemorgan',tr:'Campionato'},
+  {t:'Classic',s:'2010/11',a:'alex10dp',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2009/10',a:'mastiff17',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2009/10',a:'vick',tr:'Champions League'},
+  {t:'Classic',s:'2009/10',a:'vale16',tr:'Campionato'},
+  {t:'Classic',s:'2009/10',a:'alex10dp',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2008/09',a:'alex10dp',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2008/09',a:'andrew87',tr:'Coppa Italia'},
+  {t:'Classic',s:'2008/09',a:'mcgrady',tr:'Campionato'},
+  {t:'Classic',s:'2008/09',a:'vale16',tr:'Cucchiaio di Legno'},
+  {t:'Classic',s:'2007/08',a:'vale16',tr:"Portonaccio's Cup"},
+  {t:'Classic',s:'2007/08',a:'andrew87',tr:'Coppa Italia'},
+  {t:'Classic',s:'2007/08',a:'zeus87',tr:'Campionato'},
+  {t:'Classic',s:'2006/07',a:'alex10dp',tr:'Campionato'},
+  {t:'Classic',s:'2005/06',a:'bruno8',tr:'Campionato'},
+];
+
+// Mappa nickname → nome reale
+const realNames = {
+  vick:'Vincenzo Grisolia', zeus87:'Francesco Arzedi', bardok:'Angelo Pelliccioni',
+  mcgrady:'Marco Carpino', susi:'Alessandro Arzedi', vale16:'Valerio Cuccini',
+  jansteel87:'Claudio Maestri', joemorgan:'Gianluca Morgantini',
+  alex10dp:'Alessandro De Paolis', mastiff17:'Claudio Di Cesare',
+  andrew87:'Andrea De Luca', bruno8:'Bruno Ferraro', passione:'–',
+};
+
+// Mappa team nome → file logo
+const teamLogos = {
+  'FC Mojito':'FC_MOJITO.png','Fc Mojito':'FC_MOJITO.png',
+  'Devil Pidda':'DEVIL_PIDDA_.png',
+  'Passione Romana':'PASSIONE_ROMANA.png','PassioneRomana':'PASSIONE_ROMANA.png',
+  'Atletico87':'ATLETICO_87.png',
+  'Susine Dortmund':'SUSINE_DORTMUND.png',
+  'I Cuccioneros':'I_CUCCIONEROS.png',
+  'Master Cinecitta':'MASTER_CINECITTA.png','Mstr Cinecitta':'MASTER_CINECITTA.png','Mstr Cinecittà':'MASTER_CINECITTA.png','Master Cinecittà':'MASTER_CINECITTA.png',
+  'ACPicchia':'AC_PICCHIA.png','Acpicchia':'AC_PICCHIA.png','AC Picchia':'AC_PICCHIA.png',
+  'Depathlon Football Club':'DEPATHLON_FOOTBALL_CLUB.png','Depathlon FC':'DEPATHLON_FOOTBALL_CLUB.png',
+  'Antinum FC':'ANTINUM_RIVISTO.png','FC Antinum':'ANTINUM_RIVISTO.png','Antinum':'ANTINUM_RIVISTO.png','Antinum\u00a0FC':'ANTINUM_RIVISTO.png',
+};
+
+const coachColors = {
+  vick:'#F5821F',vale16:'#4A90D9',joemorgan:'#50C878',susi:'#C678DD',
+  mastiff17:'#E06C75',mcgrady:'#56B6C2',zeus87:'#D4A017',andrew87:'#98C379',
+  alex10dp:'#E5534B',jansteel87:'#61AFEF',bardok:'#ABB2BF',
+  passione:'#FF79C6',bruno8:'#BD93F9',
+};
+
+// Mappa allenatore → logo squadra attuale
+const coachLogo = {
+  vick:       'FC_MOJITO.png',
+  zeus87:     'DEVIL_PIDDA_.png',
+  bardok:     'PASSIONE_ROMANA.png',
+  mcgrady:    'ATLETICO_87.png',
+  susi:       'SUSINE_DORTMUND.png',
+  vale16:     'I_CUCCIONEROS.png',
+  jansteel87: 'MASTER_CINECITTA.png',
+  joemorgan:  'AC_PICCHIA.png',
+  alex10dp:   'DEPATHLON_FOOTBALL_CLUB.png',
+  mastiff17:  'ANTINUM_RIVISTO.png',
+};
+
+function coachLogoImg(name) {
+  const f = coachLogo[name];
+  return f ? `<img src="assets/${f}" alt="${name}" style="width:32px;height:32px;object-fit:contain;margin-right:10px;vertical-align:middle;flex-shrink:0;" onerror="this.style.display='none'">` : '';
+}
+
+const trophyKey = {
+  'Campionato':'camp',"Portonaccio's Cup":'cup','Champions League':'ucl',
+  'Coppa Italia':'coppa','Super League':'sl','Talent Scout':'talent',
+  'Miglior Allenatore':'coach2','Cucchiaio di Legno':'wooden'
+};
+
+// Palmares calcolato dai dati
+function buildPalmares() {
+  const p = {};
+  alboDoro.forEach(r => {
+    if (!p[r.a]) p[r.a] = {trofei:{},tot:0};
+    const tr = r.tr;
+    p[r.a].trofei[tr] = (p[r.a].trofei[tr]||0)+1;
+    p[r.a].tot++;
+  });
+  return p;
+}
+
+// ── BUILD COACHES ──────────────────────────────────────────────────────────
+function buildCoaches() {
+  const p = buildPalmares();
+  const sorted = Object.entries(p).sort((a,b) => b[1].tot - a[1].tot);
+  const grid = document.getElementById('coaches-grid');
+  const mainTrophies = ['Campionato',"Portonaccio's Cup",'Champions League','Coppa Italia'];
+  sorted.forEach(([name, data], i) => {
+    const color = coachColors[name] || '#888';
+    const initials = name.replace(/[0-9]/g,'').slice(0,2).toUpperCase();
+    const rn = realNames[name] || '';
+    const badges = Object.entries(data.trofei).map(([tr,cnt]) =>
+      `<span class="trophy-badge ${mainTrophies.some(k=>tr===k)?'gold':''}">${tr}${cnt>1?' ×'+cnt:''}</span>`
+    ).join('');
+    grid.innerHTML += `
+      <div class="coach-card">
+        <div class="coach-rank">${i+1}</div>
+        <div class="coach-header">
+          <div class="coach-avatar" style="background:linear-gradient(135deg,${color}33,${color}66);border-color:${color}44;color:${color};">${initials}</div>
+          <div class="coach-info">
+            <div class="coach-name" style="color:${color}">${name}</div>
+            <div class="coach-realname">${rn}</div>
+          </div>
+        </div>
+        <div class="coach-trophies">${badges}</div>
+        <div class="coach-total">
+          <span class="coach-total-num">${data.tot}</span>
+          <span class="coach-total-label">Trofei totali</span>
+        </div>
+      </div>`;
+  });
+}
+
+// ── BUILD TROPHY TABLES ────────────────────────────────────────────────────
+function buildTrophyTables() {
+  Object.entries(trophyKey).forEach(([trName, key]) => {
+    const rows = alboDoro.filter(r=>r.tr===trName).sort((a,b)=>b.s.localeCompare(a.s));
+    const tbody = document.getElementById('rows-'+key);
+    if(!tbody) return;
+    const cnt = document.getElementById('cnt-'+key);
+    if(cnt) cnt.textContent = rows.length+' edizioni';
+    rows.forEach(r => {
+      const color = coachColors[r.a]||'#888';
+      const rn = realNames[r.a]||'';
+      const logo = coachLogoImg(r.a);
+      tbody.innerHTML += `<tr>
+        <td><span class="season-badge">${r.s}</span></td>
+        <td>
+          <div style="display:flex;align-items:center;">
+            ${logo}
+            <div>
+              <span class="winner-name" style="color:${color}">${r.a}</span>
+              <span style="display:block;font-size:0.73rem;color:var(--text-muted);margin-top:1px;">${rn}</span>
+            </div>
+          </div>
+        </td>
+        <td><span class="mode-badge ${r.t.toLowerCase()}">${r.t}</span></td>
+      </tr>`;
+    });
+  });
+}
+
+// ── RANKINGS ──────────────────────────────────────────────────────────────
+const classifiche = [
+  {s:'2023/24',rows:[{p:1,t:'FC Mojito',pu:63},{p:2,t:'Devil Pidda',pu:61},{p:3,t:'Passione Romana',pu:52},{p:4,t:'Atletico87',pu:50},{p:5,t:'Susine Dortmund',pu:49},{p:6,t:'I Cuccioneros',pu:47},{p:7,t:'Master Cinecitta',pu:43},{p:8,t:'ACPicchia',pu:41},{p:9,t:'Depathlon Football Club',pu:38},{p:10,t:'Antinum FC',pu:38}]},
+  {s:'2022/23',rows:[{p:1,t:'Susine Dortmund',pu:53},{p:2,t:'Depathlon FC',pu:52},{p:3,t:'Devil Pidda',pu:52},{p:4,t:'Antinum FC',pu:50},{p:5,t:'PassioneRomana',pu:48},{p:6,t:'I Cuccioneros',pu:47},{p:7,t:'Mstr Cinecitta',pu:47},{p:8,t:'Fc Mojito',pu:45},{p:9,t:'Atletico87',pu:37},{p:10,t:'Acpicchia',pu:31}]},
+  {s:'2021/22',rows:[{p:1,t:'Mstr Cinecitta',pu:61},{p:2,t:'Depathlon FC',pu:60},{p:3,t:'Acpicchia',pu:60},{p:4,t:'Antinum FC',pu:54},{p:5,t:'I Cuccioneros',pu:50},{p:6,t:'Fc Mojito',pu:47},{p:7,t:'Atletico87',pu:45},{p:8,t:'PassioneRomana',pu:45},{p:9,t:'Devil Pidda',pu:44},{p:10,t:'Green Island',pu:30}]},
+  {s:'2020/21',rows:[{p:1,t:'FC Antinum',pu:57},{p:2,t:'Mstr Cinecitta',pu:56},{p:3,t:'Devil Pidda',pu:56},{p:4,t:'I Cuccioneros',pu:54},{p:5,t:'Atletico87',pu:53},{p:6,t:'PassioneRomana',pu:50},{p:7,t:'New Team',pu:43},{p:8,t:'Green Island',pu:40},{p:9,t:'ACPicchia',pu:38},{p:10,t:'FC Mojito',pu:37}]},
+  {s:'2019/20',rows:[{p:1,t:'Fc Mojito',pu:66},{p:2,t:'Aquile Nere',pu:58},{p:3,t:'Mstr Cinecitta',pu:56},{p:4,t:'Fc ReAle',pu:55},{p:5,t:'New Team',pu:50},{p:6,t:'Devil Pidda',pu:47},{p:7,t:'Atletico87',pu:44},{p:8,t:'I Cuccioneros',pu:42},{p:9,t:'Green Island',pu:42},{p:10,t:'ACPicchia',pu:40}]},
+  {s:'2018/19',rows:[{p:1,t:'ACPicchia',pu:75},{p:2,t:'Fc ReAle',pu:63},{p:3,t:'Fc Mojito',pu:59},{p:4,t:'Green Island',pu:58},{p:5,t:'New Team',pu:51},{p:6,t:'Aquile Nere',pu:51},{p:7,t:'Devil Pidda',pu:46},{p:8,t:'Mstr Cinecitta',pu:35},{p:9,t:'Atletico87',pu:33},{p:10,t:'I Cuccioneros',pu:33}]},
+  {s:'2017/18',rows:[{p:1,t:'ACPicchia',pu:72},{p:2,t:'Mstr Cinecitta',pu:60},{p:3,t:'Green Island',pu:52},{p:4,t:'Aquile Nere',pu:52},{p:5,t:'Atletico87',pu:49},{p:6,t:'Fc ReAle',pu:48},{p:7,t:'I Cuccioneros',pu:43},{p:8,t:'New Team',pu:42},{p:9,t:'Devil Pidda',pu:41},{p:10,t:'Fc Mojito',pu:32}]},
+  {s:'2016/17',rows:[{p:1,t:'Mstr Cinecitta',pu:76},{p:2,t:'Devil Pidda',pu:71},{p:3,t:'Atletico87',pu:59},{p:4,t:'Green Island',pu:58},{p:5,t:'New Team',pu:54},{p:6,t:'Aquile Nere',pu:40},{p:7,t:'Antinum FC',pu:39},{p:8,t:'ACPicchia',pu:36},{p:9,t:'PassioneRomana',pu:36},{p:10,t:'Fc Mojito',pu:32}]},
+  {s:'2015/16',rows:[{p:1,t:'ACPicchia',pu:62},{p:2,t:'Mstr Cinecitta',pu:62},{p:3,t:'Antinum FC',pu:60},{p:4,t:'Atletico87',pu:59},{p:5,t:'Fc Mojito',pu:51},{p:6,t:'I Cuccioneros',pu:46},{p:7,t:'Aquile Nere',pu:46},{p:8,t:'Devil Pidda',pu:45},{p:9,t:'New Team',pu:34},{p:10,t:'Green Island',pu:27}]},
+  {s:'2014/15',rows:[{p:1,t:'Green Island',pu:60},{p:2,t:'New Team',pu:56},{p:3,t:'ACPicchia',pu:52},{p:4,t:'Aquile Nere',pu:52},{p:5,t:'Atletico87',pu:51},{p:6,t:'Devil Pidda',pu:50},{p:7,t:'I Cuccioneros',pu:47},{p:8,t:'Fc Mojito',pu:45},{p:9,t:'Antinum FC',pu:43},{p:10,t:'DinamoZagaglia',pu:32}]},
+  {s:'2013/14',rows:[{p:1,t:'Fc Mojito',pu:63},{p:2,t:'ACPicchia',pu:58},{p:3,t:'Devil Pidda',pu:58},{p:4,t:'Atletico87',pu:54},{p:5,t:'Antinum FC',pu:51},{p:6,t:'Green Island',pu:48},{p:7,t:'I Cuccioneros',pu:46},{p:8,t:'New Team',pu:44},{p:9,t:'DinamoZagabria',pu:42},{p:10,t:'Aquile Nere',pu:36}]},
+];
+
+function getLogo(teamName) {
+  const f = teamLogos[teamName];
+  return f ? `<img src="assets/${f}" alt="${teamName}" onerror="this.style.display='none'">` : '';
+}
+
+function buildRankings(filter) {
+  const grid = document.getElementById('rankings-grid');
+  const data = filter ? classifiche.filter(c=>c.s===filter) : classifiche;
+  grid.innerHTML = '';
+  data.forEach(s => {
+    const pc = p => p===1?'gold':p===2?'silver':p===3?'bronze':'';
+    const rowsHtml = s.rows.slice(0,10).map(r=>`
+      <tr>
+        <td class="pos-cell ${pc(r.p)}">${r.p}</td>
+        <td class="team-logo-cell">${getLogo(r.t)}</td>
+        <td class="team-cell">${r.t}</td>
+        <td class="pts-cell">${r.pu} pt</td>
+      </tr>`).join('');
+    grid.innerHTML += `
+      <div class="ranking-card">
+        <div class="ranking-card-header">
+          <span class="ranking-season">${s.s}</span>
+        </div>
+        <table class="ranking-table"><tbody>${rowsHtml}</tbody></table>
+      </div>`;
+  });
+}
+
+function buildSeasonFilter() {
+  const container = document.getElementById('season-filter');
+  const allBtn = document.createElement('button');
+  allBtn.className = 'season-btn active'; allBtn.textContent = 'Tutte';
+  allBtn.onclick = () => { setActiveBtn(allBtn); buildRankings(null); };
+  container.appendChild(allBtn);
+  classifiche.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'season-btn'; btn.textContent = s.s;
+    btn.onclick = () => { setActiveBtn(btn); buildRankings(s.s); };
+    container.appendChild(btn);
+  });
+}
+function setActiveBtn(el) {
+  document.querySelectorAll('.season-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── TOGGLE ─────────────────────────────────────────────────────────────────
+function toggleTrophy(key) {
+  const body = document.getElementById('body-'+key);
+  const chev = document.getElementById('chev-'+key);
+  if(!body) return;
+  const open = !body.classList.contains('open');
+  body.classList.toggle('open', open);
+  if(chev) chev.classList.toggle('open', open);
+  body.previousElementSibling?.classList.toggle('open', open);
+}
+
+// ── NAV SCROLL ──────────────────────────────────────────────────────────────
+const navTargets = {
+  home:'home', albodoro:'albodoro', campionato:'campionato',
+  coppe:'coppe', premi:'premi', classifiche:'classifiche'
+};
+function navTo(key) {
+  const id = navTargets[key] || key;
+  const el = document.getElementById(id);
+  if(!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 70;
+  window.scrollTo({top, behavior:'smooth'});
+}
+
+// ── INIT ────────────────────────────────────────────────────────────────────
+buildCoaches();
+buildTrophyTables();
+buildSeasonFilter();
+buildRankings(null);
+toggleTrophy('camp');
+</script>
+</body>
+</html>
